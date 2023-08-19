@@ -8,6 +8,7 @@ set(GLAD_H ${CMAKE_CURRENT_SOURCE_DIR}/include/glad)
 set(KHR_H ${CMAKE_CURRENT_SOURCE_DIR}/include/KHR)
 include_directories(${KHR_H} ${GLAD_H} ${GLFW_H})
 
+
 set(GLFW_LINK /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib)
 link_libraries(${OPENGL} ${GLFW_LINK})
 
