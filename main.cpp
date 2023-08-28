@@ -2,6 +2,7 @@
 #include "glad.h"
 #include <glfw3.h>
 #include "glad.c"
+#include "shader.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -111,30 +112,32 @@ int main()
 
     // link shaders
     unsigned int shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    // check for linking errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
+//    glAttachShader(shaderProgram, vertexShader);
+//    glAttachShader(shaderProgram, fragmentShader);
+//    glLinkProgram(shaderProgram);
+//    // check for linking errors
+//    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+//    if (!success) {
+//        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+//        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+//    }
+//    glDeleteShader(vertexShader);
+//    glDeleteShader(fragmentShader);
+//
+//    unsigned int shaderProgramAlt = glCreateProgram();
+//    glAttachShader(shaderProgramAlt, vertexShader);
+//    glAttachShader(shaderProgramAlt, fragmentShaderAlt);
+//    glLinkProgram(shaderProgramAlt);
+//    // check for linking errors
+//    glGetProgramiv(shaderProgramAlt, GL_LINK_STATUS, &success);
+//    if (!success) {
+//        glGetProgramInfoLog(shaderProgramAlt, 512, NULL, infoLog);
+//        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+//    }
+//    glDeleteShader(vertexShader);
+//    glDeleteShader(fragmentShaderAlt);
 
-    unsigned int shaderProgramAlt = glCreateProgram();
-    glAttachShader(shaderProgramAlt, vertexShader);
-    glAttachShader(shaderProgramAlt, fragmentShaderAlt);
-    glLinkProgram(shaderProgramAlt);
-    // check for linking errors
-    glGetProgramiv(shaderProgramAlt, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgramAlt, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShaderAlt);
+    Shader ourShader("shader.vs", "shader.fs");
 
 
 //    glUseProgram(shaderProgram);
@@ -197,6 +200,7 @@ int main()
 
 
 
+
     // uncomment this call to draw in wireframe polygons.
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -214,7 +218,8 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         // draw our first triangle
-        glUseProgram(shaderProgram);
+        ourShader.use();
+//        glUseProgram(shaderProgram);
 //        glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 //        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -243,7 +248,7 @@ int main()
     // ------------------------------------------------------------------------
 //    glDeleteVertexArrays(1, &VAO);
 //    glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
+//    glDeleteProgram(shaderProgram);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
