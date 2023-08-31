@@ -56,6 +56,13 @@ build CMakeFiles/learn_opengl.dir/main.cpp.o: CXX_COMPILER__learn_opengl_unscann
   OBJECT_DIR = CMakeFiles/learn_opengl.dir
   OBJECT_FILE_DIR = CMakeFiles/learn_opengl.dir
 
+build CMakeFiles/learn_opengl.dir/stb_image.cpp.o: CXX_COMPILER__learn_opengl_unscanned_Debug /Users/aashiqshaikh/Documents/Graphics/opengl/learn-opengl/stb_image.cpp || cmake_object_order_depends_target_learn_opengl
+  DEP_FILE = CMakeFiles/learn_opengl.dir/stb_image.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/aashiqshaikh/Documents/Graphics/opengl/learn-opengl/include/KHR -I/Users/aashiqshaikh/Documents/Graphics/opengl/learn-opengl/include/glad -I/opt/homebrew/Cellar/glfw/3.3.8/include/GLFW -I/Users/aashiqshaikh/Documents/Graphics/opengl/learn-opengl/shaders
+  OBJECT_DIR = CMakeFiles/learn_opengl.dir
+  OBJECT_FILE_DIR = CMakeFiles/learn_opengl.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target learn_opengl
@@ -64,7 +71,7 @@ build CMakeFiles/learn_opengl.dir/main.cpp.o: CXX_COMPILER__learn_opengl_unscann
 #############################################
 # Link the executable learn_opengl
 
-build learn_opengl: CXX_EXECUTABLE_LINKER__learn_opengl_Debug CMakeFiles/learn_opengl.dir/main.cpp.o | /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib
+build learn_opengl: CXX_EXECUTABLE_LINKER__learn_opengl_Debug CMakeFiles/learn_opengl.dir/main.cpp.o CMakeFiles/learn_opengl.dir/stb_image.cpp.o | /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib  -framework OpenGL  -framework GLUT
   OBJECT_DIR = CMakeFiles/learn_opengl.dir

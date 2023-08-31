@@ -15,7 +15,9 @@ link_libraries(${OPENGL} ${GLFW_LINK})
 
 set(SOURCE_FILES main.cpp)
 add_executable(learn_opengl main.cpp
-        shader.h)
+        shader.h
+        stb_image.h
+        stb_image.cpp)
 
 if (APPLE)
     target_link_libraries(learn_opengl "-framework OpenGL")
