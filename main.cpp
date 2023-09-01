@@ -66,6 +66,7 @@ int main()
             1, 2, 3    // second triangle
     };
 
+
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
@@ -90,6 +91,7 @@ int main()
 
 
     // -------- texture stuff -------
+    stbi_set_flip_vertically_on_load(true);
     unsigned int texture1, texture2;
     glGenTextures(1, &texture1);
     glBindTexture(GL_TEXTURE_2D, texture1);
