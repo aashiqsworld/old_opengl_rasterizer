@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(GLFW_H /opt/homebrew/Cellar/glfw/3.3.8/include/GLFW)
 set(GLAD_H ${CMAKE_CURRENT_SOURCE_DIR}/include/glad)
 set(KHR_H ${CMAKE_CURRENT_SOURCE_DIR}/include/KHR)
-set(SHADERS ${CMAKE_CURRENT_SOURCE_DIR}/shaders)
-include_directories(${KHR_H} ${GLAD_H} ${GLFW_H} ${SHADERS})
+set(GLM_H ${CMAKE_CURRENT_SOURCE_DIR}/include/glm)
+include_directories(${KHR_H} ${GLAD_H} ${GLFW_H} ${GLM_H})
 
 
 set(GLFW_LINK /opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib)
