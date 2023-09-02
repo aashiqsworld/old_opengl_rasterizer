@@ -145,12 +145,9 @@ int main()
 
 
     // testing start --------------
-    mat4 trans = mat4(1.0f);
-    trans = rotate(trans, radians(90.0f), vec3(0.0, 0.0, 1.0));
-    trans = scale(trans, vec3(0.5, 0.5, 0.5));
 
-    unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
-    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans));
+
+
 
     // testing end ----------------
 
@@ -174,8 +171,24 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, texture2);
 
+        // transformation matrix
+        mat4 trans = mat4(1.0f);
+        trans = rotate(trans, (float)glfwGetTime(), vec3(0.0f, 0.0f, 1.0f));
+        trans = translate(trans, vec3(0.5, -0.5, 0.0f));
+        unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans));
+
         // render container
         ourShader.use();
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        trans = mat4(1.0f);
+        trans = translate(trans, vec3(-0.5, 0.5, 0.0f));
+        trans = scale(trans, vec3(abs(sin((float)glfwGetTime())), sin((float)glfwGetTime()+15), sin((float)glfwGetTime())));
+        transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans));
+
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
