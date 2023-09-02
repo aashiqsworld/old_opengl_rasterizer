@@ -4,8 +4,12 @@
 #include "glad.c"
 #include "shader.h"
 #include "stb_image.h"
+#include "include/glm/glm.hpp"
+#include "include/glm/gtc/matrix_transform.hpp"
+#include "include/glm/gtc/type_ptr.hpp"
 
 using namespace std;
+using namespace glm;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -138,6 +142,17 @@ int main()
     ourShader.use();
     ourShader.setInt("texture1", 0);
     ourShader.setInt("texture2", 1);
+
+
+    // testing start --------------
+    mat4 trans = mat4(1.0f);
+    trans = rotate(trans, radians(90.0f), vec3(0.0, 0.0, 1.0));
+    trans = scale(trans, vec3(0.5, 0.5, 0.5));
+
+    unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans));
+
+    // testing end ----------------
 
 
     // render loop
