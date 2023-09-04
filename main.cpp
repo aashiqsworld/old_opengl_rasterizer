@@ -70,6 +70,7 @@ int main()
         return -1;
     }
 
+
     // link shader
     Shader ourShader("shader.vs", "shader.fs");
 
