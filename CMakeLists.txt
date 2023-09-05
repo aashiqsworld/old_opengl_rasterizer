@@ -17,7 +17,8 @@ set(SOURCE_FILES main.cpp)
 add_executable(learn_opengl main.cpp
         shader.h
         stb_image.h
-        stb_image.cpp)
+        stb_image.cpp
+        camera.h)
 
 if (APPLE)
     target_link_libraries(learn_opengl "-framework OpenGL")
