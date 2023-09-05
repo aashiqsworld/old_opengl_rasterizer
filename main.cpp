@@ -282,7 +282,7 @@ int main()
 
         // clear frame
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.1f, 0.15f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -312,8 +312,7 @@ int main()
         {
             model = glm::translate(model, cubePositions[i]);
             float angle = 20.0f * i + (i % 3 == 0 ? (float)glfwGetTime() * 50 : 0);
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-
+//            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             litShader.setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);

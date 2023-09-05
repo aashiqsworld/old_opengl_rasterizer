@@ -11,5 +11,6 @@ uniform vec3 objectColor;
 
 void main()
 {
-    FragColor = vec4(lightColor * texture(texture1, TexCoord).xyz * objectColor, 1.0);
+//     FragColor = vec4(lightColor * texture(texture1, TexCoord).xyz * objectColor, 1.0);
+    FragColor = vec4(lightColor * objectColor, 1.0);
 }
