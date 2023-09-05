@@ -343,6 +343,11 @@ int main()
         litShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
         litShader.setVec3("lightPos", lightPos);
         litShader.setVec3("viewPos", camera.Position);
+        litShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        litShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        litShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        litShader.setFloat("material.shininess", 32.0f);
+
 
 
         auto view = camera.GetViewMatrix();
@@ -370,8 +375,13 @@ int main()
         glBindVertexArray(lightVAO);
 
         model = glm::mat4(1.0f);
+        lightPos = glm::vec3(lightPos.x + sin((float)glfwGetTime()) / 50, lightPos.y + cos((float)glfwGetTime()) / 50, lightPos.z);
+
         model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f));
+
+
+
         lightCubeShader.setMat4("model", model);
         lightCubeShader.setMat4("view", view);
         lightCubeShader.setMat4("projection", projection);
