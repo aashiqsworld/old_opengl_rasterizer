@@ -342,6 +342,7 @@ int main()
         litShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         litShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
         litShader.setVec3("lightPos", lightPos);
+        litShader.setVec3("viewPos", camera.Position);
 
 
         auto view = camera.GetViewMatrix();
