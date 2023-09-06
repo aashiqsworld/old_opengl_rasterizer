@@ -364,7 +364,7 @@ int main()
 
         // send uniforms to shader
         litShader.use();
-        litShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+//        litShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         litShader.setVec3("lightColor",  1.0f, 1.0f, 1.0f);
         litShader.setVec3("lightPos", lightPos);
         litShader.setVec3("viewPos", camera.Position);
@@ -382,9 +382,10 @@ int main()
         glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
 
-        litShader.setVec3("light.ambient", ambientColor);
-        litShader.setVec3("light.diffuse", diffuseColor);
-        litShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+        litShader.setVec3("dirLight.direction", 0.1f, -1.0f, 0.1f);
+        litShader.setVec3("dirLight.ambient", ambientColor);
+        litShader.setVec3("dirLight.diffuse", diffuseColor);
+        litShader.setVec3("dirLight.specular", diffuseColor);
 
 
         // draw the 10 cubes
@@ -400,9 +401,10 @@ int main()
 
         for(int i = 0; i < 10; i++)
         {
-            model = glm::translate(model, cubePositions[i]);
+            float d = 0.5;
+            model = glm::translate(model, glm::vec3(cubePositions[i].x * d, cubePositions[i].y * d, cubePositions[i].z * d));
 //            float angle = 20.0f * i + (i % 3 == 0 ? (float)glfwGetTime() * 50 : 0);
-//            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            model = glm::rotate(model, glm::radians((float)i*5), glm::vec3(1.0f, 0.3f, 0.5f));
             litShader.setMat4("model", model);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -414,7 +416,7 @@ int main()
         glBindVertexArray(lightVAO);
 
         model = glm::mat4(1.0f);
-        lightPos = glm::vec3(lightPos.x + sin((float)glfwGetTime()) / 50, lightPos.y + cos((float)glfwGetTime()) / 50, lightPos.z);
+//        lightPos = glm::vec3(lightPos.x + sin((float)glfwGetTime()) / 50, lightPos.y + cos((float)glfwGetTime()) / 50, lightPos.z);
 
         model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f));
