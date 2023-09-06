@@ -230,6 +230,12 @@ int main()
             glm::vec3(-1.3f,  1.0f, -1.5f)
     };
 
+    glm::vec3 pointLightPositions[] = {
+            glm::vec3( 0.7f,  0.2f,  2.0f),
+            glm::vec3( 2.3f, -3.3f, -4.0f),
+            glm::vec3(-4.0f,  2.0f, -12.0f),
+            glm::vec3( 0.0f,  0.0f, -3.0f)
+    };
 
     // --------- mesh vertex stuff -----------
     unsigned int VBO, VAO, EBO;
@@ -382,10 +388,24 @@ int main()
         glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
 
-        litShader.setVec3("dirLight.direction", 0.1f, -1.0f, 0.1f);
-        litShader.setVec3("dirLight.ambient", ambientColor);
-        litShader.setVec3("dirLight.diffuse", diffuseColor);
-        litShader.setVec3("dirLight.specular", diffuseColor);
+        litShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+        litShader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+        litShader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+        litShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+
+        litShader.setVec3("spotLight.position", camera.Position);
+        litShader.setVec3("spotLight.direction", camera.Front);
+        litShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+        litShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+        litShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+        litShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5)));
+        litShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(15.0)));
+        litShader.setFloat("spotLight.constant", 1.0f);
+        litShader.setFloat("spotLight.linear", 0.09f);
+        litShader.setFloat("spotLight.quadratic", 0.032f);
+
+
+
 
 
         // draw the 10 cubes
