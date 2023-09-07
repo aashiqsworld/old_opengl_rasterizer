@@ -402,7 +402,7 @@ int main()
         litShader.setFloat("pointLights[0].linear", 0.09f);
         litShader.setFloat("pointLights[0].quadratic", 0.032f);
         // point light 2
-        litShader.setVec3("pointLights[1].position", pointLightPositions[0]);
+        litShader.setVec3("pointLights[1].position", pointLightPositions[1]);
         litShader.setVec3("pointLights[1].ambient", 0.05f, 0.05f, 0.05f);
         litShader.setVec3("pointLights[1].diffuse", 0.8f, 0.8f, 0.8f);
         litShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
@@ -410,7 +410,7 @@ int main()
         litShader.setFloat("pointLights[1].linear", 0.09f);
         litShader.setFloat("pointLights[1].quadratic", 0.032f);
         // point light 3
-        litShader.setVec3("pointLights[2].position", pointLightPositions[0]);
+        litShader.setVec3("pointLights[2].position", pointLightPositions[2]);
         litShader.setVec3("pointLights[2].ambient", 0.05f, 0.05f, 0.05f);
         litShader.setVec3("pointLights[2].diffuse", 0.8f, 0.8f, 0.8f);
         litShader.setVec3("pointLights[2].specular", 1.0f, 1.0f, 1.0f);
@@ -418,7 +418,7 @@ int main()
         litShader.setFloat("pointLights[2].linear", 0.09f);
         litShader.setFloat("pointLights[2].quadratic", 0.032f);
         // point light 4
-        litShader.setVec3("pointLights[3].position", pointLightPositions[0]);
+        litShader.setVec3("pointLights[3].position", pointLightPositions[3]);
         litShader.setVec3("pointLights[3].ambient", 0.05f, 0.05f, 0.05f);
         litShader.setVec3("pointLights[3].diffuse", 0.8f, 0.8f, 0.8f);
         litShader.setVec3("pointLights[3].specular", 1.0f, 1.0f, 1.0f);
