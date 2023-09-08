@@ -53,7 +53,7 @@ private:
         if(scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         {
             cout << "Error loading model at " << path << "." << endl;
-            cout << "ERROR::ASSIMP::" << importer.GetErrorString() << endl;
+            cout << "ERROR::ASSIMP::" << importer.GetErrorString() << "." << endl;
             return;
         }
         directory = path.substr(0, path.find_last_of('/'));
