@@ -9,6 +9,8 @@
 #include "include/glm/glm.hpp"
 #include "shader.h"
 
+using namespace std;
+
 struct Vertex {
     glm::vec3 Position;
     glm::vec3 Normal;
@@ -17,17 +19,18 @@ struct Vertex {
 
 struct Texture {
     unsigned int id;
-    std::string type;
+    string type;
+    string path;
 };
 
 class Mesh{
 public:
     // mesh data
-    std::vector<Vertex> vertices;
-    std::vector<unsigned int> indices;
-    std::vector<Texture> textures;
+    vector<Vertex> vertices;
+    vector<unsigned int> indices;
+    vector<Texture> textures;
 
-    Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
+    Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
     {
         this->vertices = vertices;
         this->indices = indices;
@@ -43,8 +46,8 @@ public:
         {
             glActiveTexture(GL_TEXTURE0 + i); // activate proper texture unit b4 binding
             // retrieve texture number (the N in diffuse_textureN)
-            std::string number;
-            std::string name = textures[i].type;
+            string number;
+            string name = textures[i].type;
             if(name == "texture_diffuse")
                 number = std::to_string(diffuseNr++);
             else if(name == "texture_specular")

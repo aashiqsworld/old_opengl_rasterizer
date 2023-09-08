@@ -9,6 +9,7 @@
 
 #include "shader.h"
 #include "camera.h"
+#include "model.h"
 
 
 
@@ -338,6 +339,7 @@ int main()
      */
 
     // testing start --------------
+    Model m = Model("backpack/backpack.obj");
 
 
     // testing end ----------------
@@ -367,6 +369,7 @@ int main()
         glBindTexture(GL_TEXTURE_2D, diffuseTexture);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
+
 
         // send uniforms to shader
         litShader.use();
@@ -487,6 +490,10 @@ int main()
             glBindVertexArray(lightVAO);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+
+        // ------testing start--------
+        m.Draw(litShader);
+        // -------testing end ----------
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
