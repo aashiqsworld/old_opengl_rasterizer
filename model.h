@@ -37,16 +37,23 @@ private:
     string directory;
     vector<Texture> textures_loaded;
 
-    void loadModel(string path)
+    void loadModel(const string& path)
     {
-        Assimp::Importer import;
-        const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+        if(!filesystem::exists(path))
+        {
+            cout << "File at path does not exist." << endl;
+            return;
+        }
 
-        cout << "Loading model at " << path << "." << endl;
+        Assimp::Importer importer;
+        const aiScene *scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+
+        cout << "Attempting to load model at " << path << "." << endl;
 
         if(scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         {
-            cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;
+            cout << "Error loading model at " << path << "." << endl;
+            cout << "ERROR::ASSIMP::" << importer.GetErrorString() << endl;
             return;
         }
         directory = path.substr(0, path.find_last_of('/'));

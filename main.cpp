@@ -340,10 +340,7 @@ int main()
 
     // testing start --------------
     Model m = Model("backpack/backpack.obj");
-
-
     // testing end ----------------
-
 
     // render loop
     // -----------
