@@ -19,6 +19,7 @@ using namespace std;
 class Model
 {
 public:
+    int c = 0;
     Model(char *path)
     {
         loadModel(path);
@@ -50,26 +51,32 @@ private:
 
         cout << "Attempting to load model at " << path << "." << endl;
 
-        if(scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+        if(!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
         {
             cout << "Error loading model at " << path << "." << endl;
             cout << "ERROR::ASSIMP::" << importer.GetErrorString() << "." << endl;
             return;
         }
         directory = path.substr(0, path.find_last_of('/'));
-
-        processNode(scene->mRootNode, scene);
         cout << "Model at " << path << "successfully loaded." << endl;
+
+        cout << "Attempting to process model at " << path << "." << endl;
+        processNode(scene->mRootNode, scene);
+        cout << "Model at " << path << "successfully processed." << endl;
     }
     void processNode(aiNode *node, const aiScene *scene)
     {
-        // process all the node's meshes (if any)
+        // process each mesh located at the current node
         for(unsigned int i = 0; i < node->mNumMeshes; i++)
         {
-            aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+            // the node object only contains indices to index the actual objects in the scene.
+            // the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
+            aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
             meshes.push_back(processMesh(mesh, scene));
+//            c++;
+//            cout << "Pushing back mesh " << c << endl;
         }
-        // then do the same for each of its children
+        // after we've processed all of the meshes (if any) we then recursively process each of the children nodes
         for(unsigned int i = 0; i < node->mNumChildren; i++)
         {
             processNode(node->mChildren[i], scene);

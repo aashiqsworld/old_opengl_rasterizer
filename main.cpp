@@ -339,7 +339,7 @@ int main()
      */
 
     // testing start --------------
-    Model m = Model("backpack/backpack.obj");
+    Model m = Model("backpack/cube.obj");
     // testing end ----------------
 
     // render loop
@@ -465,6 +465,7 @@ int main()
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
+        m.Draw(litShader);
 
         // draw light
         lightCubeShader.use();
@@ -489,7 +490,7 @@ int main()
         }
 
         // ------testing start--------
-        m.Draw(litShader);
+
         // -------testing end ----------
 
 
